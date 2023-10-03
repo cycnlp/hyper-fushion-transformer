@@ -1,0 +1,1 @@
+Place the pre-trained weights for Swintransformer_tiny
