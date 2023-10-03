@@ -136,12 +136,8 @@ if __name__ == "__main__":
         train_img_ids = train_lines
         val_img_ids = val_lines
 
-        # for i in  range(7,8):
-
         model,model_name = createmode()
-        # model_name=model_name+'structsloss17*17'
-        # model_name=model_name+'wbce[11*11]_reallywdice'
-        # model_name =model_name +  'cro_wdice不深監'
+
         # print(model)
         print("model------------name-----")
         print(model_name)
@@ -181,7 +177,7 @@ if __name__ == "__main__":
 
         print("train length   ", len(train_img_ids))
         print("val length   ", len(val_img_ids))
-        # 我能说一句，就这模样，学历，加老师职业，在我家那边大杀四方，无人能破
+     
 
         # epoch_size      = len(train_lines) // Batch_size
         epoch_size      = len(train_img_ids) // Batch_size
