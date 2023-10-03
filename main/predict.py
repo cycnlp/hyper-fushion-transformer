@@ -34,13 +34,7 @@ from mynets.hynet import net1
 
 model = net1(2)
 model_name = 'hynet'
-# path=''
 
-# model.load_state_dict(torch.load(path,map_location='cpu')['model'])
-# model.load_state_dict(torch.load(path,map_location='cpu')['model'],strict=False)
-#
-# save_file = {"model": model.state_dict()}
-# torch.save(save_file, path1 + "/model_best.pth")
 
 path='/home/zmk/deeplearning/Dataset_BUSI_upup/result/model_best.pth'
 model.load_state_dict(torch.load(path,map_location='cpu')['model'])
