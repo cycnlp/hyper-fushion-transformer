@@ -107,7 +107,6 @@ def createmode():
 
     return model,model_name
 
-
 if __name__ == "__main__":
 
         import random
