@@ -92,8 +92,8 @@ def  val_one_epoch(net, w1,w2,w3, epoch, val_gen):
 
 def createmode():
 
-    # for i in range(5):
-    #   1.unet 2015
+ 
+  
     global model, model_name
     from mynets.hynet import net1
     model = net1(2)
