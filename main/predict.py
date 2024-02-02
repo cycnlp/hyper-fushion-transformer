@@ -10,7 +10,7 @@ from utils.dataset import DeeplabDataset
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-from train_val_test_config import BUSI_path
+from config import BUSI_path
 with open(os.path.join(BUSI_path, "val.txt"), "r") as f:
     val_lines = f.readlines()
 
