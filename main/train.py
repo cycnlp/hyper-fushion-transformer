@@ -1,16 +1,13 @@
-import datetime
 import os
 import time
 import torch
-import torch.backends.cudnn as cudnn
 
-from torch import nn
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 
 
-from test01 import cross_wdice_softmax
+from utils.utils_other import cross_wdice_softmax
 
 
 os.environ['CUDA_ENABLE_DEVICES'] = '0'
@@ -26,7 +23,7 @@ epoch_train_miou=[]
 from torch.nn import CrossEntropyLoss
 loss_Cross= CrossEntropyLoss()
 
-loss_cro_wdice=cross_wdice_softmax(2)
+loss_dice=cross_wdice_softmax(2)
 
 def fit_one_epoch(net,w1,w2,w3,epoch,gen):
 
@@ -58,9 +55,9 @@ def fit_one_epoch(net,w1,w2,w3,epoch,gen):
             croloss2 = loss_Cross(outputs[1], labels.long())
             croloss3 = loss_Cross(outputs[2], labels.long())
             #
-            lossx1 = loss_cro_wdice(outputs[0], labels)
-            lossx2 = loss_cro_wdice(outputs[1], labels)
-            lossx3 = loss_cro_wdice(outputs[2], labels)
+            lossx1 = loss_dice(outputs[0], labels)
+            lossx2 = loss_dice(outputs[1], labels)
+            lossx3 = loss_dice(outputs[2], labels)
             lossx = w1* (croloss1 + lossx1) + w2* (croloss2 + lossx2) + w3 * (lossx3 + croloss3)
 
             optimizer.zero_grad()
@@ -85,7 +82,7 @@ def  val_one_epoch(net, w1,w2,w3, epoch, val_gen):
             # print(val_labels.shape)
             outputs = net(val_imgs)
             croloss1 = loss_Cross(outputs[0], val_labels.long())
-            eval_loss = loss_cro_wdice(outputs[0], val_labels)+croloss1
+            eval_loss = loss_dice(outputs[0], val_labels)+croloss1
             # outputs = outputs[0]
 
             # total_eval_loss = total_eval_loss +0.8* eval_loss.item()+0.2*dece_loss.item()
@@ -123,9 +120,9 @@ if __name__ == "__main__":
         NUM_CLASSES = 2
         w1,w2,w3=1,1,1
 
-        from train_val_test_config import BUSI_path, savepath
+        from config import BUSI_path
 
-            # ---------------------------#
+        # ---------------------------#
             #   读取数据集对应的txt
             # ---------------------------#
         with open(os.path.join(BUSI_path, "train.txt"), "r") as f:
