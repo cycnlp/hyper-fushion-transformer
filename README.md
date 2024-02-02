@@ -1,6 +1,5 @@
 # hyper-fusion-transformer
-
-cd main 
- predict.py 
- train.py
+cd main  
+ train.py  
+ predict.py  
 best_model.pth link：https://pan.baidu.com/s/18LuZCHmGIOQZFASytjOf4Q?pwd=68xk passwd：68xk
